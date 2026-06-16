@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Player-Info</title>
-</head>
-<body>
-    <h1>Player Info</h1>
+{% extends 'base.html' %}
+{% block content %}
+    <h1 class="text-center">Player Info</h1>
     <h2>{{player.name}}</h2>
     <p>Rating:{{player.rating}}</p>
     <p>Nationality:{{player.nation}}</p>
     <p>Position:{{player.position}}</p>
-</body>
-</html>
+{% endblock %}

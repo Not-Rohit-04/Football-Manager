@@ -1,18 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Players</title>
-</head>
-<body>
-    <h1>Players Available</h1>
-    {% for player in players %}
-    <ul>
-        <li>
-            <a href="{{url_for('show_player',player_id=player.id)}}">{{player.name}}</a>
-        </li>
-    </ul>
-    {% endfor %}
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="text-center my-4">Players Available</h1>
+
+<div class="container">
+    <div class="row g-4">
+
+        {% for player in players %}
+
+        <div class="col-md-3">
+            <div class="card h-100">
+
+                <img
+                    src="{{player.img}}"
+                    class="card-img-top"
+                    alt="{{ player.name }}"
+                    style="height: 250px ;object-fit: cover;"
+                >
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ player.name }}</h5>
+
+                    <p class="card-text">
+                        {{player.msg}}
+                    </p>
+
+                    <a href="{{ url_for('show_player', player_id=player.id) }}"
+                       class="btn btn-primary">
+                        About
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}

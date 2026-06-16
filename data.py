@@ -1,9 +1,11 @@
 player_data =[
-    {"id": 1, "name": "Lionel Messi", "rating": 93, "nation": "Argentina","position":"RW"},
-    {"id": 2, "name": "Cristiano Ronaldo", "rating": 90, "nation": "Portugal","position":"Lw"},
-    {"id": 3, "name": "Kylian Mbappe", "rating": 92, "nation": "France","position":"Lw"},
-    {"id": 4, "name": "Erling Haaland", "rating": 91, "nation": "Norway","position":"ST"},
-    {"id": 5, "name": "Jude Bellingham", "rating": 89, "nation": "England","position":"CAM"},
-    {"id": 6, "name": "Neymar Junior", "rating": 90, "nation": "Brazil","position":"LW"},
-    {"id": 7, "name": "Pedri", "rating": 87, "nation": "Spain","position":"CM"}
+    {"id": 1, "name": "Lionel Messi", "rating": 93, "nation": "Argentina","position":"RW","img":"https://media.gettyimages.com/id/2281294609/photo/kansas-city-kansas-lionel-messi-of-argentina-poses-for-a-portrait-during-the-official-fifa.jpg?s=612x612&w=0&k=20&c=vagJMEeOcvO70DYjIypnXVanoHXUNw2ucVPEhgl4GlA=","msg":"A magician with the ball who can change a game in a single moment."},
+    {"id": 2, "name": "Cristiano Ronaldo", "rating": 90, "nation": "Portugal","position":"Lw","img":"https://media.gettyimages.com/id/962792890/photo/kiev-ukraine-cristiano-ronaldo-of-real-madrid-lifts-the-uefa-champions-league-trophy-following.jpg?s=612x612&w=0&k=20&c=F51xOktZy_gdCC-UpEo3cq4ZsaAnAi9e2XKRap_bCss=","msg":"The definition of dedication, leadership, and goalscoring greatness."},
+    {"id": 3, "name": "Kylian Mbappe", "rating": 92, "nation": "France","position":"Lw","img":"https://media.gettyimages.com/id/2162376750/photo/madrid-spain-real-madrid-new-signing-kylian-mbappe-is-unveiled-at-estadio-santiago-bernabeu.jpg?s=612x612&w=0&k=20&c=7TSzU_H2lvc4gJG_bgerUOc_TjoaSOmAqr55VOmAodA=","msg":"Lightning-fast and fearless, always ready to make the difference."},
+    {"id": 4, "name": "Erling Haaland", "rating": 91, "nation": "Norway","position":"ST","img":"https://media.gettyimages.com/id/2278255681/photo/manchester-england-erling-haaland-of-manchester-city-puts-the-crown-from-the-2022-2023.jpg?s=612x612&w=0&k=20&c=WSYY-a0p85i7lWaUm6yYcuR3E64Ltvzproy8dqBlczU=","msg":"A goal machine who turns every chance into a nightmare for defenders."},
+    {"id": 5, "name": "Jude Bellingham", "rating": 89, "nation": "England","position":"CAM","img":"https://media.gettyimages.com/id/2157244620/photo/blankenhain-germany-jude-bellingham-of-england-poses-for-a-portrait-during-the-england.jpg?s=612x612&w=0&k=20&c=TGY2ihXbAwfw-6_WoO-ZqaW7lsoRNm_gjsaUd9pMF84=","msg":"A complete midfielder with the maturity of a veteran and the hunger of a youngster."},
+    {"id": 6, "name": "Neymar Junior", "rating": 90, "nation": "Brazil","position":"LW","img":"https://media.gettyimages.com/id/824360616/photo/miami-gardens-fl-neymar-of-barcelona-reacts-in-the-second-half-against-real-madrid-during.jpg?s=612x612&w=0&k=20&c=NthGPILj98rZWxdsjUw-wCrSgwpKtADVnLNAYEvEsDw=","msg":"Pure Brazilian flair, creativity, and entertainment every time he plays."},
+    {"id": 7, "name": "Pedri", "rating": 89, "nation": "Spain","position":"CM","img":"https://media.gettyimages.com/id/2280600920/photo/puebla-mexico-pedri-of-spain-celebrates-after-scoring-the-teams-second-goal-during-the.jpg?s=612x612&w=0&k=20&c=1tn80T6--peHL4XYKVlpVJrxg3hcf4jy-V3821ExZqI=","msg":"A midfield artist who makes football look effortless."},
+    {"id": 8, "name": "Virgil van Dijk", "rating": 90, "nation": "Netherlands","position":"CB","img":"https://media.gettyimages.com/id/2169758515/photo/manchester-england-virgil-van-dijk-of-liverpool-celebrates-following-the-teams-victory-in-the.jpg?s=612x612&w=0&k=20&c=l4t7nOtTVu2xCwRKmrW8ssgge85ae2Eg-e8PD1GDOL8=","msg":"A defensive giant whose presence brings confidence to the entire team."}
+
 ]
