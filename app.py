@@ -1,7 +1,15 @@
 from flask import Flask,render_template
 from data import player_data
+from form import AddPlayer
+from flask_bootstrap import Bootstrap5
+from dotenv import load_dotenv
+import os
 
 app = Flask(__name__)
+bootstrap=Bootstrap5(app)
+load_dotenv()
+
+app.config["SECRET_KEY"]=os.getenv("SECRET_KEY")
 
 @app.route("/")
 def home():
@@ -36,5 +44,11 @@ def hall_of_fame():
 def mix_team():
     return render_template('mix_team.html')
 
+@app.route("/add-player")
+def add_player():
+    form = AddPlayer()
+    return render_template('add.html',form=form)
+
+print(app.config['SECRET_KEY'])
 if __name__ == '__main__':
     app.run(debug = True)

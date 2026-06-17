@@ -1,8 +1,33 @@
-{% extends 'base.html' %}
-{% block content %}
-    <h1 class="text-center">Player Info</h1>
-    <h2>{{player.name}}</h2>
-    <p>Rating:{{player.rating}}</p>
-    <p>Nationality:{{player.nation}}</p>
-    <p>Position:{{player.position}}</p>
+{% extends 'base.html' %} {% block content %}
+<div class="container my-5">
+    <div class="row featurette">
+
+        <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading fw-normal lh-1">
+                {{ player.name }}
+            </h2>
+
+            <p class="lead">
+                {{ player.about }}
+            </p>
+
+            <span class="badge text-bg-primary">
+                Rating {{ player.rating }}
+            </span>
+
+            <span class="badge text-bg-success">
+                {{ player.position }}
+            </span>
+
+            <span class="badge text-bg-secondary">
+                {{ player.nation }}
+            </span>
+        </div>
+
+        <div class="col-md-5 order-md-1">
+            <img src="{{ player.img }}" class="img-fluid rounded" alt="{{ player.name }}">
+        </div>
+
+    </div>
+</div>
 {% endblock %}
