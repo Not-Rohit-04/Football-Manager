@@ -1,5 +1,73 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
 
-{% block content %}
-<h1 class="text-center">FootBall Manager</h1>
+<!-- Hero -->
+<div class="px-4 py-5 my-5 text-center hero-section">
+  <h1 class="display-4 fw-bold text-white">Build Your Dream Team</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">
+      Step into the role of a football manager and create your ultimate team.
+      Browse elite players, study their attributes, and build a squad capable of
+      achieving greatness on the biggest stage.
+    </p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+      <a href="{{ url_for('player') }}" class="btn btn-primary">
+        View Players
+      </a>
+      <a href="{{ url_for('player') }}" class="btn btn-secondary">
+        Learn More
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Features -->
+<div class="container px-4 py-5" id="featured-3">
+  <h2 class="pb-2 border-bottom">
+    Features
+  </h2>
+  <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+    <div class="feature col">
+      <div
+        class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3"
+      >
+        <img src="{{url_for('static',filename='assets/img/football.jpg')}}" width="50" height="50" aria-hidden="true">
+      </div>
+      <h3 class="fs-2 text-body-emphasis">Build Team</h3>
+      <p>
+        Create your ultimate squad using today's biggest football stars. Pick your formation, choose your players, and see if your team has what it takes to dominate the pitch. 
+      </p>
+      <a href="{{ url_for('build_team') }}" class="btn btn-primary">
+        Build Team
+      </a>
+    </div>
+    <div class="feature col">
+      <div
+        class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3"
+      >
+        <img src="{{url_for('static',filename='assets/img/trophy.jpg')}}" width="50" height="50" aria-hidden="true">
+      </div>
+      <h3 class="fs-2 text-body-emphasis">Hall of Fame</h3>
+      <p>
+        Step back through football history and build a legendary team featuring the greatest players to ever play the game. From Pelé to Zidane, the icons await.
+      </p>
+      <a href="{{ url_for('hall_of_fame') }}" class="btn btn-primary">
+        Build Team
+      </a>
+    </div>
+    <div class="feature col">
+      <div
+        class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3"
+      >
+        <img src="{{url_for('static',filename='assets/img/fire.jpg')}}" width="50" height="50" aria-hidden="true">
+      </div>
+      <h3 class="fs-2 text-body-emphasis">Mix Lineup</h3>
+      <p>
+        Why choose between eras? Combine modern superstars and football legends to create the most powerful lineup imaginable. The only limit is your imagination.
+      </p>
+      <a href="{{ url_for('mix_team') }}" class="btn btn-primary">
+        Build Team
+      </a>
+    </div>
+  </div>
+</div>
 {% endblock %}

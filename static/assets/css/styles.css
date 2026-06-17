@@ -53,3 +53,34 @@ body {
 main {
     flex: 1;
 }
+
+.hero-section{
+    background-image: url("../img/stadiumbg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    min-height: 70vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-section{
+    background:
+        linear-gradient(rgba(0,0,0,0.5),
+                        rgba(0,0,0,0.5)),
+        url("../img/stadiumbg.jpg");
+
+    background-size: cover;
+    background-position: center;
+    color: white;
+    min-height: 70vh;
+}
+
+.feature-icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: .75rem;
+}
