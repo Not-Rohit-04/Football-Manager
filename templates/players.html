@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row g-4">
 
-        {% for player in players %}
+        {% for player in all_players %}
 
         <div class="col-md-3">
             <div class="card h-100">
@@ -23,7 +23,7 @@
                     <h5 class="card-title">{{ player.name }}</h5>
 
                     <p class="card-text">
-                        {{player.msg}}
+                        {{player.description}}
                     </p>
 
                     <a href="{{ url_for('show_player', player_id=player.id) }}"

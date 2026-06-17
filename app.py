@@ -1,15 +1,44 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,redirect,url_for
 from data import player_data
 from form import AddPlayer
 from flask_bootstrap import Bootstrap5
 from dotenv import load_dotenv
 import os
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy import Integer, String, Boolean,Text
+
+load_dotenv()
 
 app = Flask(__name__)
 bootstrap=Bootstrap5(app)
-load_dotenv()
-
 app.config["SECRET_KEY"]=os.getenv("SECRET_KEY")
+
+class Base(DeclarativeBase):
+    pass
+
+db = SQLAlchemy(model_class=Base)
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///players.db"
+db.init_app(app)
+
+
+class Player(db.Model):
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+
+    name: Mapped[str] = mapped_column(String(100),nullable=False)
+    rating: Mapped[int] = mapped_column(Integer,nullable=False)
+    position: Mapped[str] = mapped_column(String(10),nullable=False)
+    nation: Mapped[str] = mapped_column(String(50),nullable=False)
+    img: Mapped[str] = mapped_column(String(500),nullable=False)
+    about: Mapped[str] = mapped_column(Text,nullable=False)
+    age: Mapped[int] = mapped_column(Integer,nullable=False)
+    club: Mapped[str] = mapped_column(String(100),nullable=False)
+    description: Mapped[str] = mapped_column(String(500),nullable=False)
+    
+    legend: Mapped[bool] = mapped_column(Boolean, default=False)
+
+with app.app_context():
+    db.create_all()
 
 @app.route("/")
 def home():
@@ -17,16 +46,13 @@ def home():
 
 @app.route("/players")
 def player():
-    data = player_data
-    return render_template('players.html',players = data)
+    result = db.session.execute(db.select(Player))
+    all_players=result.scalars().all()
+    return render_template('players.html',all_players = all_players)
 
 @app.route("/player/<int:player_id>")
 def show_player(player_id):
-    req_player = None
-    data = player_data
-    for player in data:
-        if player['id']==player_id:
-            req_player = player
+    req_player = db.get_or_404(Player,player_id)
     if req_player is None:
         return 'Player Not Found',404
 
@@ -44,11 +70,28 @@ def hall_of_fame():
 def mix_team():
     return render_template('mix_team.html')
 
-@app.route("/add-player")
+@app.route("/add-player",methods=['GET','Post'])
 def add_player():
     form = AddPlayer()
+    if form.validate_on_submit():
+        new_player=Player(
+            name = form.name.data,
+            rating = form.rating.data,
+            age = form.age.data,
+            nation = form.nation.data,
+            position = form.position.data,
+            club=form.club.data,
+            img=form.image_url.data,
+            description=form.short_desc.data,
+            about = form.about.data,
+            legend = form.legend.data
+        )
+        db.session.add(new_player)
+        db.session.commit()
+        return redirect(url_for('add_player'))
+
     return render_template('add.html',form=form)
 
-print(app.config['SECRET_KEY'])
+
 if __name__ == '__main__':
     app.run(debug = True)
