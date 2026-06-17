@@ -1,6 +1,6 @@
 from flask import Flask,render_template,redirect,url_for
 from data import player_data
-from form import AddPlayer
+from form import AddPlayer,EditPlayer
 from flask_bootstrap import Bootstrap5
 from dotenv import load_dotenv
 import os
@@ -92,6 +92,41 @@ def add_player():
 
     return render_template('add.html',form=form)
 
+
+@app.route("/edit-player/<int:player_id>",methods=['GET','Post'])
+def edit_player(player_id):
+    req_player = db.get_or_404(Player,player_id)
+    edit_form = EditPlayer(
+        age = req_player.age,
+        rating = req_player.rating,
+        nation = req_player.nation,
+        club = req_player.club,
+        position = req_player.position,
+        image_url = req_player.img,
+        short_desc = req_player.description,
+        about = req_player.about,
+        legend = req_player.legend
+    )
+    if edit_form.validate_on_submit():
+        req_player.age = edit_form.age.data
+        req_player.rating = edit_form.rating.data
+        req_player.nation = edit_form.nation.data
+        req_player.club = edit_form.club.data
+        req_player.position = edit_form.position.data
+        req_player.img = edit_form.image_url.data
+        req_player.description = edit_form.short_desc.data
+        req_player.about = edit_form.about.data
+        req_player.legend = edit_form.legend.data
+        db.session.commit()
+        return redirect(url_for("show_player",player_id=req_player.id))
+    return render_template('edit.html',form=edit_form,player=req_player)
+
+@app.route("/delete-player/<int:player_id>")
+def delete_player(player_id):
+    req_player = db.get_or_404(Player,player_id)
+    db.session.delete(req_player)
+    db.session.commit()
+    return redirect(url_for('player'))
 
 if __name__ == '__main__':
     app.run(debug = True)
