@@ -53,9 +53,14 @@
                 aria-expanded="false"
                 >More</a
               >
+              
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Login</a></li>
+                {% if session.get("admin") %} 
                 <li><a class="dropdown-item" href="{{url_for('add_player')}}">Add Player</a></li>
+                <li><a class="dropdown-item" href="{{url_for('logout')}}">Logout</a></li>
+                {% else %}
+                <li><a class="dropdown-item" href="{{url_for('login')}}">Login</a></li>
+                {% endif %}
               </ul>
             </li>
           </ul>

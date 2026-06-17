@@ -1,6 +1,6 @@
-from flask import Flask,render_template,redirect,url_for
+from flask import Flask,render_template,redirect,url_for,session
 from data import player_data
-from form import AddPlayer,EditPlayer
+from form import AddPlayer,EditPlayer,LoginForm
 from flask_bootstrap import Bootstrap5
 from dotenv import load_dotenv
 import os
@@ -72,6 +72,8 @@ def mix_team():
 
 @app.route("/add-player",methods=['GET','Post'])
 def add_player():
+    if not session.get('admin'):
+        return redirect(url_for('login'))
     form = AddPlayer()
     if form.validate_on_submit():
         new_player=Player(
@@ -93,8 +95,10 @@ def add_player():
     return render_template('add.html',form=form)
 
 
-@app.route("/edit-player/<int:player_id>",methods=['GET','Post'])
+@app.route("/edit-player/<int:player_id>",methods=['GET','POST'])
 def edit_player(player_id):
+    if not session.get('admin'):
+        return redirect(url_for('login'))
     req_player = db.get_or_404(Player,player_id)
     edit_form = EditPlayer(
         age = req_player.age,
@@ -123,10 +127,31 @@ def edit_player(player_id):
 
 @app.route("/delete-player/<int:player_id>")
 def delete_player(player_id):
+    if not session.get('admin'):
+        return redirect(url_for('login'))
     req_player = db.get_or_404(Player,player_id)
     db.session.delete(req_player)
     db.session.commit()
     return redirect(url_for('player'))
+
+
+@app.route("/login",methods=["GET","POST"])
+def login():
+    form = LoginForm()
+    ad_name = os.getenv('ADMIN_USERNAME')
+    ad_pass = os.getenv('ADMIN_PASSWORD')
+    if form.validate_on_submit():
+        if form.name.data == ad_name and form.password.data == ad_pass:
+            session['admin'] = True
+            return redirect(url_for('home'))
+        
+    return render_template('login.html',form = form)
+
+
+@app.route("/logout")
+def logout():
+    session.pop("admin",None)
+    return redirect(url_for('home'))
 
 if __name__ == '__main__':
     app.run(debug = True)

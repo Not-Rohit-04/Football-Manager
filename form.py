@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SelectField,StringField,SubmitField,IntegerField,BooleanField,TextAreaField
+from wtforms import SelectField,StringField,SubmitField,IntegerField,BooleanField,TextAreaField,PasswordField
 from wtforms.validators import DataRequired
 
 class AddPlayer(FlaskForm):
@@ -49,3 +49,8 @@ class EditPlayer(FlaskForm):
     about = TextAreaField("About")
     legend = BooleanField("Legend")
     submit = SubmitField("Update")
+
+class LoginForm(FlaskForm):
+    name = StringField('Username')
+    password =  PasswordField('Password')
+    submit = SubmitField('Login')
