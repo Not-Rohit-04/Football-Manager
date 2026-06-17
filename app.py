@@ -60,7 +60,11 @@ def show_player(player_id):
 
 @app.route("/build-team")
 def build_team():
-    return render_template('build_team.html')
+    goalkeepers = db.session.execute(db.select(Player).where(Player.position=="GK")).scalars().all()
+    defenders = db.session.execute(db.select(Player).where(Player.position=="CB")).scalars().all()
+    midfielders = db.session.execute(db.select(Player).where(Player.position.in_(["CM","CAM"]))).scalars().all()
+    attackers = db.session.execute(db.select(Player).where(Player.position.in_(["ST","LW","RW"]))).scalars().all()
+    return render_template('build_team.html' ,goalkeepers=goalkeepers,defenders=defenders,midfielders=midfielders,attackers=attackers)
 
 @app.route("/hof-team")
 def hall_of_fame():

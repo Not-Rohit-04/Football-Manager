@@ -1,1 +1,95 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
+<!-- GoalKeeper -->
+
+<h2 class="text-center mb-4">Goalkeepers</h2>
+<div class="container d-flex justify-content-center">
+  <div style="width: 600px">
+    <div class="list-group list-group-radio d-grid gap-2 border-0">
+      {% for goalkeeper in goalkeepers %}
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="goalkeeper"
+          id="gk{{ goalkeeper.id }}"
+          value="{{ goalkeeper.id }}"
+        />
+
+        <label class="form-check-label" for="gk{{ goalkeeper.id }}">
+          {{ goalkeeper.name }} ({{ goalkeeper.rating }})
+        </label>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- DEFENDER -->
+<h2 class="text-center mb-4">Defenders</h2>
+<div class="container d-flex justify-content-center">
+  <div style="width: 600px">
+    <div class="list-group list-group-radio d-grid gap-2 border-0">
+      {% for defender in defenders %}
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="defender"
+          id="cb{{ defender.id }}"
+          value="{{ defender.id }}"
+        />
+
+        <label class="form-check-label" for="cb{{ defender.id }}">
+          {{ defender.name }} ({{ defender.rating }})
+        </label>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- Midfilder -->
+<h2 class="text-center mb-4">Midfielders</h2>
+<div class="container d-flex justify-content-center">
+  <div style="width: 600px">
+    <div class="list-group list-group-radio d-grid gap-2 border-0">
+      {% for midfielder in midfielders %}
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="midf'"
+          id="cm{{ midfielder.id }}"
+          value="{{ midfielder.id }}"
+        />
+
+        <label class="form-check-label" for="st{{ midfielder.id }}">
+          {{ midfielder.name }} ({{ midfielder.rating }})
+        </label>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- ATTACKER -->
+<h2 class="text-center mb-4">Attackers</h2>
+<div class="container d-flex justify-content-center">
+  <div style="width: 600px">
+    <div class="list-group list-group-radio d-grid gap-2 border-0">
+      {% for attacker in attackers %}
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="attacker"
+          id="st{{ attacker.id }}"
+          value="{{ attacker.id }}"
+        />
+
+        <label class="form-check-label" for="st{{ attacker.id }}">
+          {{ attacker.name }} ({{ attacker.rating }})
+        </label>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
