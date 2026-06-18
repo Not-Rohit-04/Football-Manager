@@ -1,5 +1,4 @@
 from flask import Flask,render_template,redirect,url_for,session,request
-from data import player_data
 from form import AddPlayer,EditPlayer,LoginForm
 from flask_bootstrap import Bootstrap5
 from dotenv import load_dotenv
