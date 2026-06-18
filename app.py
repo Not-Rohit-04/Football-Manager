@@ -1,4 +1,4 @@
-from flask import Flask,render_template,redirect,url_for,session
+from flask import Flask,render_template,redirect,url_for,session,request
 from data import player_data
 from form import AddPlayer,EditPlayer,LoginForm
 from flask_bootstrap import Bootstrap5
@@ -58,12 +58,26 @@ def show_player(player_id):
 
     return render_template('player_info.html',player=req_player)
 
-@app.route("/build-team")
+@app.route("/build-team",methods=["GET","POST"])
 def build_team():
     goalkeepers = db.session.execute(db.select(Player).where(Player.position=="GK")).scalars().all()
     defenders = db.session.execute(db.select(Player).where(Player.position=="CB")).scalars().all()
     midfielders = db.session.execute(db.select(Player).where(Player.position.in_(["CM","CAM"]))).scalars().all()
     attackers = db.session.execute(db.select(Player).where(Player.position.in_(["ST","LW","RW"]))).scalars().all()
+    if request.method=="POST":
+        print(request.form)
+
+        gk_id = request.form.get('goalkeeper')
+        def_id = request.form.get('defender')
+        mid_id = request.form.get('midfielder')
+        atk_id = request.form.get('attacker') 
+        sel_gk = db.get_or_404(Player,gk_id)
+        sel_def = db.get_or_404(Player,def_id)
+        sel_mid = db.get_or_404(Player,mid_id)
+        sel_atk = db.get_or_404(Player,atk_id)
+        total_rating = round((sel_gk.rating + sel_atk.rating + sel_def.rating + sel_mid.rating) / 4,2)
+        return render_template('team.html',gk = sel_gk,defe=sel_def,mid=sel_mid,atk = sel_atk,tot=total_rating)
+
     return render_template('build_team.html' ,goalkeepers=goalkeepers,defenders=defenders,midfielders=midfielders,attackers=attackers)
 
 @app.route("/hof-team")
