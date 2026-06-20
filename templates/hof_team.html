@@ -4,7 +4,45 @@
 
 <div class="container text-center mt-5">
     <h1>Hall of Fame</h1>
-    <p class="lead">Coming Soon in V2 ⚽</p>
+</div>
+<div class="container">
+    <div class="row g-4">
+
+        {% for legend in legends %}
+
+        <div class="col-md-3">
+            <div class="card h-100">
+
+                <img
+                    src="{{legend.img}}"
+                    class="card-img-top"
+                    alt="{{ legend.name }}"
+                    style="height: 250px ;object-fit: cover;"
+                >
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ legend.name }}</h5>
+
+                    <p class="card-text">
+                        {{legend.description}}
+                    </p>
+
+                    <a href="{{ url_for('show_player', player_id=legend.id) }}"
+                       class="btn btn-primary">
+                        About
+                    </a>
+                    <a href="{{ url_for('edit_player', player_id=legend.id) }}"
+                       class="btn btn-secondary">
+                        Edit
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
 </div>
 
 {% endblock %}

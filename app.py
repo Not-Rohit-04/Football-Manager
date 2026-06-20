@@ -59,12 +59,11 @@ def show_player(player_id):
 
 @app.route("/build-team",methods=["GET","POST"])
 def build_team():
-    goalkeepers = db.session.execute(db.select(Player).where(Player.position=="GK")).scalars().all()
-    defenders = db.session.execute(db.select(Player).where(Player.position=="CB")).scalars().all()
-    midfielders = db.session.execute(db.select(Player).where(Player.position.in_(["CM","CAM"]))).scalars().all()
-    attackers = db.session.execute(db.select(Player).where(Player.position.in_(["ST","LW","RW"]))).scalars().all()
+    goalkeepers = db.session.execute(db.select(Player).where(Player.position=="GK").where(Player.legend==False)).scalars().all()
+    defenders = db.session.execute(db.select(Player).where(Player.position=="CB").where(Player.legend==False)).scalars().all()
+    midfielders = db.session.execute(db.select(Player).where(Player.position.in_(["CM","CAM"])).where(Player.legend==False)).scalars().all()
+    attackers = db.session.execute(db.select(Player).where(Player.position.in_(["ST","LW","RW"])).where(Player.legend==False)).scalars().all()
     if request.method=="POST":
-        print(request.form)
 
         gk_id = request.form.get('goalkeeper')
         def_id = request.form.get('defender')
@@ -79,9 +78,10 @@ def build_team():
 
     return render_template('build_team.html' ,goalkeepers=goalkeepers,defenders=defenders,midfielders=midfielders,attackers=attackers)
 
-@app.route("/hof-team")
+@app.route("/hof-team",methods=['GET','POST'])
 def hall_of_fame():
-    return render_template('hof_team.html')
+    legend_players = db.session.execute(db.select(Player).where(Player.legend==True)).scalars().all()
+    return render_template('hof_team.html',legends=legend_players)
 
 @app.route("/mix-team")
 def mix_team():
