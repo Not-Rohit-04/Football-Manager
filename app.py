@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session,redirect,url_for
 from flask_bootstrap import Bootstrap5
 from dotenv import load_dotenv
 import os
@@ -147,6 +147,10 @@ def build_team():
 
 @app.route("/play-match", methods=["GET", "POST"])
 def play_match():
+    
+    if "gk_id" not in session:
+        return redirect(url_for("build_team"))
+    
     sel_gk = db.get_or_404(Player, session["gk_id"])
     sel_def = db.get_or_404(Player, session["def_id"])
     sel_mid_1 = db.get_or_404(Player, session["mid_id_1"])
@@ -216,6 +220,10 @@ def play_match():
         result = "Draw!"
     
     return render_template("match.html",your_score=your_score,computer_score=computer_score,comp_rating=computer_rating,team_rating=team_rating,result=result,c_gk=computer_gk,c_def=computer_defe,cm_1=computer_mid_1,cm_2=computer_mid_2,c_atk=computer_atk,gk=sel_gk,defe=sel_def,mid_1=sel_mid_1,mid_2=sel_mid_2,atk=sel_atk)
+
+@app.route('/learn-more')
+def learn_more():
+    return render_template('learn_more.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

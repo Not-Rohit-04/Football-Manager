@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="text-center mb-5">
+        <h1 class="display-4">Learn More</h1>
+        <p class="lead">
+            Build your squad, challenge opponents, and become the ultimate football manager.
+        </p>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+
+            <h2>About The Project</h2>
+
+            <p>
+                Football Manager is a Flask-based football simulation game built using Python,
+                Flask, SQLAlchemy, Bootstrap, HTML, and CSS.
+            </p>
+
+            <p>
+                The game allows users to create a 5-a-side football team using randomly generated
+                players from different positions. Every player has their own rating, club,
+                nationality, and age, making each team unique.
+            </p>
+
+            <p>
+                After building a squad, players can compete against a computer-generated team in
+                simulated football matches where team ratings help determine the outcome.
+            </p>
+
+        </div>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h4>⚽ Generated Players</h4>
+                    <p>
+                        Explore a database filled with randomly generated football players,
+                        each with unique ratings, clubs, positions, and nationalities.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h4>🧠 Team Builder</h4>
+                    <p>
+                        Select players from different positions and build the strongest
+                        possible 5-a-side squad.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h4>🏆 Match Simulation</h4>
+                    <p>
+                        Challenge computer-generated teams and see whether your squad has
+                        what it takes to win.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="text-center mt-5">
+        <h2>Future Plans</h2>
+
+        <p class="mt-3">
+            Future versions may include saved teams, match history, league systems,
+            tournaments, advanced statistics, and additional gameplay features.
+        </p>
+
+        <a href="{{ url_for('build_team') }}" class="btn btn-primary mt-3">
+            Build Your Team
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}
