@@ -11,34 +11,34 @@
 
         <div class="col-md-3">
             <div class="card h-100">
-
-                <img
-                    src="{{player.img}}"
-                    class="card-img-top"
-                    alt="{{ player.name }}"
-                    style="height: 250px ;object-fit: cover;"
-                >
-
                 <div class="card-body">
                     <h5 class="card-title">{{ player.name }}</h5>
-
-                    <p class="card-text">
-                        {{player.description}}
-                    </p>
-
-                    <a href="{{ url_for('show_player', player_id=player.id) }}"
-                       class="btn btn-primary">
-                        About
-                    </a>
-                    <a href="{{ url_for('edit_player', player_id=player.id) }}"
-                       class="btn btn-secondary">
-                        Edit
-                    </a>
                 </div>
+                <ul>
+                <li><span class="badge text-bg-info">
+                    Age:-{{ player.age }}
+                </span></li>
+                
+                
+                <li><span class="badge text-bg-secondary">
+                    Nation:-{{ player.nation }}
+                </span></li>
+
+                <li><span class="badge text-bg-primary">
+                    Rating:-{{ player.rating }}
+                </span></li>
+
+                <li><span class="badge text-bg-warning">
+                    Position:-{{ player.position }}
+                </span></li>
+
+                <li><span class="badge text-bg-success">
+                    Club:-{{ player.club }}
+                </span></li>
+                </ul>
 
             </div>
-        </div>
-
+        </div>             
         {% endfor %}
 
     </div>

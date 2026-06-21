@@ -1,5 +1,4 @@
-from flask import Flask,render_template,redirect,url_for,session,request
-from form import AddPlayer,EditPlayer,LoginForm
+from flask import Flask,render_template
 from flask_bootstrap import Bootstrap5
 from dotenv import load_dotenv
 import os
@@ -51,34 +50,9 @@ def player():
     all_players=result.scalars().all()
     return render_template('players.html',all_players = all_players)
 
-@app.route("/player/<int:player_id>")
-def show_player(player_id):
-    req_player = db.get_or_404(Player,player_id)
-    if req_player is None:
-        return 'Player Not Found',404
-
-    return render_template('player_info.html',player=req_player)
-
 @app.route("/build-team",methods=["GET","POST"])
 def build_team():
-    goalkeepers = db.session.execute(db.select(Player).where(Player.position=="GK").where(Player.legend==False)).scalars().all()
-    defenders = db.session.execute(db.select(Player).where(Player.position=="CB").where(Player.legend==False)).scalars().all()
-    midfielders = db.session.execute(db.select(Player).where(Player.position.in_(["CM","CAM"])).where(Player.legend==False)).scalars().all()
-    attackers = db.session.execute(db.select(Player).where(Player.position.in_(["ST","LW","RW"])).where(Player.legend==False)).scalars().all()
-    if request.method=="POST":
-
-        gk_id = request.form.get('goalkeeper')
-        def_id = request.form.get('defender')
-        mid_id = request.form.get('midfielder')
-        atk_id = request.form.get('attacker') 
-        sel_gk = db.get_or_404(Player,gk_id)
-        sel_def = db.get_or_404(Player,def_id)
-        sel_mid = db.get_or_404(Player,mid_id)
-        sel_atk = db.get_or_404(Player,atk_id)
-        total_rating = round((sel_gk.rating + sel_atk.rating + sel_def.rating + sel_mid.rating) / 4,2)
-        return render_template('team.html',gk = sel_gk,defe=sel_def,mid=sel_mid,atk = sel_atk,tot=total_rating)
-
-    return render_template('build_team.html' ,goalkeepers=goalkeepers,defenders=defenders,midfielders=midfielders,attackers=attackers)
+    pass
 
 @app.route("/hof-team",methods=['GET','POST'])
 def hall_of_fame():
@@ -89,88 +63,6 @@ def hall_of_fame():
 def mix_team():
     return render_template('mix_team.html')
 
-@app.route("/add-player",methods=['GET','Post'])
-def add_player():
-    if not session.get('admin'):
-        return redirect(url_for('login'))
-    form = AddPlayer()
-    if form.validate_on_submit():
-        new_player=Player(
-            name = form.name.data,
-            rating = form.rating.data,
-            age = form.age.data,
-            nation = form.nation.data,
-            position = form.position.data,
-            club=form.club.data,
-            img=form.image_url.data,
-            description=form.short_desc.data,
-            about = form.about.data,
-            legend = form.legend.data
-        )
-        db.session.add(new_player)
-        db.session.commit()
-        return redirect(url_for('add_player'))
-
-    return render_template('add.html',form=form)
-
-
-@app.route("/edit-player/<int:player_id>",methods=['GET','POST'])
-def edit_player(player_id):
-    if not session.get('admin'):
-        return redirect(url_for('login'))
-    req_player = db.get_or_404(Player,player_id)
-    edit_form = EditPlayer(
-        age = req_player.age,
-        rating = req_player.rating,
-        nation = req_player.nation,
-        club = req_player.club,
-        position = req_player.position,
-        image_url = req_player.img,
-        short_desc = req_player.description,
-        about = req_player.about,
-        legend = req_player.legend
-    )
-    if edit_form.validate_on_submit():
-        req_player.age = edit_form.age.data
-        req_player.rating = edit_form.rating.data
-        req_player.nation = edit_form.nation.data
-        req_player.club = edit_form.club.data
-        req_player.position = edit_form.position.data
-        req_player.img = edit_form.image_url.data
-        req_player.description = edit_form.short_desc.data
-        req_player.about = edit_form.about.data
-        req_player.legend = edit_form.legend.data
-        db.session.commit()
-        return redirect(url_for("show_player",player_id=req_player.id))
-    return render_template('edit.html',form=edit_form,player=req_player)
-
-@app.route("/delete-player/<int:player_id>")
-def delete_player(player_id):
-    if not session.get('admin'):
-        return redirect(url_for('login'))
-    req_player = db.get_or_404(Player,player_id)
-    db.session.delete(req_player)
-    db.session.commit()
-    return redirect(url_for('player'))
-
-
-@app.route("/login",methods=["GET","POST"])
-def login():
-    form = LoginForm()
-    ad_name = os.getenv('ADMIN_USERNAME')
-    ad_pass = os.getenv('ADMIN_PASSWORD')
-    if form.validate_on_submit():
-        if form.name.data == ad_name and form.password.data == ad_pass:
-            session['admin'] = True
-            return redirect(url_for('home'))
-        
-    return render_template('login.html',form = form)
-
-
-@app.route("/logout")
-def logout():
-    session.pop("admin",None)
-    return redirect(url_for('home'))
 
 if __name__ == '__main__':
     app.run(debug = True)
