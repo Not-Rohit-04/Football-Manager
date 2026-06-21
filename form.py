@@ -1,6 +1,15 @@
 from flask_wtf import FlaskForm
-from wtforms import SelectField,StringField,SubmitField,IntegerField,BooleanField,TextAreaField,PasswordField
+from wtforms import (
+    SelectField,
+    StringField,
+    SubmitField,
+    IntegerField,
+    BooleanField,
+    TextAreaField,
+    PasswordField,
+)
 from wtforms.validators import DataRequired
+
 
 class AddPlayer(FlaskForm):
     name = StringField("Player Name", validators=[DataRequired()])
@@ -17,8 +26,8 @@ class AddPlayer(FlaskForm):
             ("CAM", "CAM"),
             ("LW", "LW"),
             ("RW", "RW"),
-            ("ST", "ST")
-        ]
+            ("ST", "ST"),
+        ],
     )
     image_url = StringField("Image URL")
     short_desc = StringField("Short Description")
@@ -41,7 +50,7 @@ class EditPlayer(FlaskForm):
             ("CAM", "CAM"),
             ("LW", "LW"),
             ("RW", "RW"),
-            ("ST", "ST")
+            ("ST", "ST"),
         ]
     )
     image_url = StringField("Image URL")
@@ -50,7 +59,8 @@ class EditPlayer(FlaskForm):
     legend = BooleanField("Legend")
     submit = SubmitField("Update")
 
+
 class LoginForm(FlaskForm):
-    name = StringField('Username')
-    password =  PasswordField('Password')
-    submit = SubmitField('Login')
+    name = StringField("Username")
+    password = PasswordField("Password")
+    submit = SubmitField("Login")

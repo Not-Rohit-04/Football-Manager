@@ -1,0 +1,83 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+<div class="text-center mb-5">
+    <h1>Match Day</h1>
+    <h3>Your Team vs Computer Team</h3>
+</div>
+<div class="container">
+    <div class="row">
+
+        <!-- Your Team -->
+        <div class="col-md-6 text-center">
+            <h2>Your Team</h2>
+
+            <div class="mb-3">
+                <h5>{{ gk.name }}</h5>
+                <small>GK • {{ gk.rating }}</small>
+            </div>
+
+            <div class="mb-3">
+                <h5>{{ defe.name }}</h5>
+                <small>DEF • {{ defe.rating }}</small>
+            </div>
+
+            <div class="mb-3">
+                <h5>{{ mid_1.name }}</h5>
+                <small>MID • {{ mid_1.rating }}</small>
+            </div>
+
+            <div class="mb-3">
+                <h5>{{ mid_2.name }}</h5>
+                <small>MID • {{ mid_2.rating }}</small>
+            </div>
+
+            <div class="mb-3">
+                <h5>{{ atk.name }}</h5>
+                <small>ATT • {{ atk.rating }}</small>
+            </div>
+
+            <h4 class="mt-4">Team-Rating: {{ team_rating }}</h4>
+        </div>
+
+        <!-- Computer Team -->
+        <div class="col-md-6 text-center">
+            <h2>Computer Team</h2>
+
+            <div class="mb-3">
+                <h5>{{ c_gk.name }}</h5>
+                <small>GK • {{ c_gk.rating }}</small>
+            </div>
+
+            <div class="mb-3">
+                <h5>{{ c_def.name }}</h5>
+                <small>DEF • {{ c_def.rating }}</small>
+            </div>
+
+            <div class="mb-3">
+                <h5>{{ cm_1.name }}</h5>
+                <small>MID • {{ cm_1.rating }}</small>
+            </div>
+
+            <div class="mb-3">
+                <h5>{{ cm_2.name }}</h5>
+                <small>MID • {{ cm_2.rating }}</small>
+            </div>
+
+            <div class="mb-3">
+                <h5>{{ c_atk.name }}</h5>
+                <small>ATT • {{ c_atk.rating }}</small>
+            </div>
+
+            <h4 class="mt-4">Team-Rating: {{ comp_rating }}</h4>
+        </div>
+
+    </div>
+</div>
+
+<div class="text-center mt-5">
+    <h1>{{ result }}</h1>
+</div>
+
+{% endblock %}
