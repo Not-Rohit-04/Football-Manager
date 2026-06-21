@@ -217,21 +217,5 @@ def play_match():
     
     return render_template("match.html",your_score=your_score,computer_score=computer_score,comp_rating=computer_rating,team_rating=team_rating,result=result,c_gk=computer_gk,c_def=computer_defe,cm_1=computer_mid_1,cm_2=computer_mid_2,c_atk=computer_atk,gk=sel_gk,defe=sel_def,mid_1=sel_mid_1,mid_2=sel_mid_2,atk=sel_atk)
 
-
-@app.route("/hof-team", methods=["GET", "POST"])
-def hall_of_fame():
-    legend_players = (
-        db.session.execute(db.select(Player).where(Player.legend == True))
-        .scalars()
-        .all()
-    )
-    return render_template("hof_team.html", legends=legend_players)
-
-
-@app.route("/mix-team")
-def mix_team():
-    return render_template("mix_team.html")
-
-
 if __name__ == "__main__":
     app.run(debug=True)
