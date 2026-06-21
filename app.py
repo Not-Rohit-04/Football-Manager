@@ -5,7 +5,9 @@ from dotenv import load_dotenv
 import os
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import Integer, String, Boolean,Text
+from sqlalchemy import Integer, String
+from data import seed_player
+
 
 load_dotenv()
 
@@ -25,19 +27,19 @@ class Player(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
 
     name: Mapped[str] = mapped_column(String(100),nullable=False)
-    rating: Mapped[int] = mapped_column(Integer,nullable=False)
-    position: Mapped[str] = mapped_column(String(10),nullable=False)
-    nation: Mapped[str] = mapped_column(String(50),nullable=False)
-    img: Mapped[str] = mapped_column(String(500),nullable=False)
-    about: Mapped[str] = mapped_column(Text,nullable=False)
     age: Mapped[int] = mapped_column(Integer,nullable=False)
+    nation: Mapped[str] = mapped_column(String(50),nullable=False)
+    position: Mapped[str] = mapped_column(String(10),nullable=False)
+    rating: Mapped[int] = mapped_column(Integer,nullable=False)
     club: Mapped[str] = mapped_column(String(100),nullable=False)
-    description: Mapped[str] = mapped_column(String(500),nullable=False)
-    
-    legend: Mapped[bool] = mapped_column(Boolean, default=False)
 
 with app.app_context():
     db.create_all()
+    
+    if Player.query.count() == 0:
+        seed_player(Player,db)
+
+
 
 @app.route("/")
 def home():

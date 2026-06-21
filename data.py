@@ -50,13 +50,25 @@ first_names = [
     "Liam", "Noah", "Ethan", "Lucas", "Mateo",
     "Oliver", "Benjamin", "Mason", "Leo", "Daniel",
     "Alex", "Ryan", "Jack", "Nathan", "Samuel",
-    "Julian", "Marco", "Adrian", "David", "Gabriel"
+    "Julian", "Marco", "Adrian", "David", "Gabriel","Jhon","Shawn","Timity","Raul","Lucus"
 ]
-
-for player in range(6):
-    name = f'{random.choice(first_names)} {random.choice(last_names)}'
-    age = random.randint(18,38)
-    nation = random.choice(nations)
-    position = random.choice(positions)
-    club = random.choice(clubs)
-    rating = random.randint(75,95)
+def seed_player(Player,db):
+    for _ in range(60):
+        name = f'{random.choice(first_names)} {random.choice(last_names)}'
+        age = random.randint(18,38)
+        nation = random.choice(nations)
+        position = random.choice(positions)
+        club = random.choice(clubs)
+        rating = random.randint(75,95)
+        
+        new_player = Player(
+            name=name,
+            age=age,
+            nation=nation,
+            position=position,
+            club=club,
+            rating=rating
+        )
+        
+        db.session.add(new_player)
+    db.session.commit()
