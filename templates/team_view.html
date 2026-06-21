@@ -1,0 +1,85 @@
+{% extends 'base.html' %} {% block content %}
+
+<h2 class="text-center mb-4">Selected Team</h2>
+<h3 class="text-center mb-4">Team Rating:- {{ team_rating }}</h3>
+<div class="container">
+  <div class="row g-4">
+    <div class="col-md-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ gk.name }}</h5>
+
+          <p class="card-text">
+            <li>Rating:-{{gk.rating}}</li>
+            <li>Postion:-{{gk.position}}</li>
+            <li>Nation:-{{gk.nation}}</li>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ defe.name }}</h5>
+
+          <p class="card-text">
+            <li>Rating:-{{defe.rating}}</li>
+            <li>Postion:-{{defe.position}}</li>
+            <li>Nation:-{{defe.nation}}</li>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ mid1.name }}</h5>
+
+          <p class="card-text">
+            <li>Rating:-{{mid1.rating}}</li>
+            <li>Postion:-{{mid1.position}}</li>
+            <li>Nation:-{{mid1.nation}}</li>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ mid2.name }}</h5>
+
+          <p class="card-text">
+            <li>Rating:-{{mid2.rating}}</li>
+            <li>Postion:-{{mid2.position}}</li>
+            <li>Nation:-{{mid2.nation}}</li>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ atk.name }}</h5>
+
+          <p class="card-text">
+            <li>Rating:-{{atk.rating}}</li>
+            <li>Postion:-{{atk.position}}</li>
+            <li>Nation:-{{atk.nation}}</li>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="{{ url_for('play_match') }}" class="btn btn-primary mt-3">
+    Play Match
+  </a>
+  <a href="{{url_for('build_team')}}" class="btn btn-secondary mt-3">
+    Build Again
+  </a>
+</div>
+
+{% endblock %}

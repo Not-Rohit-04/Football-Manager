@@ -21,52 +21,65 @@
 </div>
 
 <!-- Features -->
-<div class="container px-4 py-5" id="featured-3">
-  <h2 class="pb-2 border-bottom">
-    Features
-  </h2>
-  <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-    <div class="feature col">
-      <div
-        class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3"
-      >
-        <img src="{{url_for('static',filename='assets/img/football.jpg')}}" width="50" height="50" aria-hidden="true">
-      </div>
-      <h3 class="fs-2 text-body-emphasis">Build Team</h3>
-      <p>
-        Create your ultimate squad using today's biggest football stars. Pick your formation, choose your players, and see if your team has what it takes to dominate the pitch. 
+<div class="container px-4 py-5">
+  <h2 class="pb-2 border-bottom">Why Football Manager?</h2>
+  <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
+    <div class="col d-flex flex-column align-items-start gap-2">
+      <h2 class="fw-bold text-body-emphasis">
+        Build, Compete, and Dominate the Pitch
+      </h2>
+      <p class="text-body-secondary">
+        Create your own 5-a-side football squad from a pool of generated players. Experiment with different lineups, challenge computer opponents, and discover the perfect combination to lead your team to victory.
       </p>
-      <a href="{{ url_for('build_team') }}" class="btn btn-primary">
-        Build Team
-      </a>
+      <a href="{{url_for('build_team')}}" class="btn btn-primary btn-lg">Build Your Team</a>
     </div>
-    <div class="feature col">
-      <div
-        class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3"
-      >
-        <img src="{{url_for('static',filename='assets/img/trophy.jpg')}}" width="50" height="50" aria-hidden="true">
+    <div class="col">
+      <div class="row row-cols-1 row-cols-sm-2 g-4">
+        <div class="col d-flex flex-column gap-2">
+          <div
+            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3"
+          >
+            <img src="{{url_for('static',filename='assets/img/football.png')}}" width="30" height="30">
+          </div>
+          <h4 class="fw-semibold mb-0 text-body-emphasis">Generated Players</h4>
+          <p class="text-body-secondary">
+            Every player is uniquely generated with their own rating, position, age, nation, and club.
+          </p>
+        </div>
+        <div class="col d-flex flex-column gap-2">
+          <div
+            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3"
+          >
+            <img src="{{url_for('static',filename='assets/img/brain.png')}}" width="30" height="30">
+          </div>
+          <h4 class="fw-semibold mb-0 text-body-emphasis">Team Building</h4>
+          <p class="text-body-secondary">
+            Select players for each position and create a balanced squad capable of competing against strong opponents.
+          </p>
+        </div>
+        <div class="col d-flex flex-column gap-2">
+          <div
+            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3"
+          >
+            <img src="{{url_for('static',filename='assets/img/trophy.png')}}" width="30" height="30">
+          </div>
+          <h4 class="fw-semibold mb-0 text-body-emphasis">Match Simulation</h4>
+          <p class="text-body-secondary">
+           Challenge computer-generated teams and see how your squad performs in exciting simulated matches.
+          </p>
+        </div>
+        <div class="col d-flex flex-column gap-2">
+          <div
+            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3"
+          >
+            <img src="{{url_for('static',filename='assets/img/analytic.png')}}" width="30" height="30">
+          </div>
+          <h4 class="fw-semibold mb-0 text-body-emphasis">Player Database</h4>
+          <p class="text-body-secondary">
+            Browse all available players, compare attributes, and identify the stars who can strengthen your lineup.
+          </p>
+        </div>
       </div>
-      <h3 class="fs-2 text-body-emphasis">Hall of Fame</h3>
-      <p>
-        Step back through football history and build a legendary team featuring the greatest players to ever play the game. From Pelé to Zidane, the icons await.
-      </p>
-      <a href="{{ url_for('hall_of_fame') }}" class="btn btn-primary">
-        Build Team
-      </a>
-    </div>
-    <div class="feature col">
-      <div
-        class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3"
-      >
-        <img src="{{url_for('static',filename='assets/img/fire.jpg')}}" width="50" height="50" aria-hidden="true">
-      </div>
-      <h3 class="fs-2 text-body-emphasis">Mix Lineup</h3>
-      <p>
-        Why choose between eras? Combine modern superstars and football legends to create the most powerful lineup imaginable. The only limit is your imagination.
-      </p>
-      <a href="{{ url_for('mix_team') }}" class="btn btn-primary">
-        Build Team
-      </a>
     </div>
   </div>
 </div>
