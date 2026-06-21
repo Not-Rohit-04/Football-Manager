@@ -205,8 +205,8 @@ def play_match():
             )
             / 4,2,)
     
-    your_score = team_rating + random.randint(-10, 10)
-    computer_score = computer_rating + random.randint(-10, 10)
+    your_score = random.randint(0,10)
+    computer_score = random.randint(0, 10)
     
     if your_score > computer_score:
         result = "You Win!"
@@ -215,7 +215,7 @@ def play_match():
     else:
         result = "Draw!"
     
-    return render_template("match.html",comp_rating=computer_rating,team_rating=team_rating,result=result,c_gk=computer_gk,c_def=computer_defe,cm_1=computer_mid_1,cm_2=computer_mid_2,c_atk=computer_atk,gk=sel_gk,defe=sel_def,mid_1=sel_mid_1,mid_2=sel_mid_2,atk=sel_atk)
+    return render_template("match.html",your_score=your_score,computer_score=computer_score,comp_rating=computer_rating,team_rating=team_rating,result=result,c_gk=computer_gk,c_def=computer_defe,cm_1=computer_mid_1,cm_2=computer_mid_2,c_atk=computer_atk,gk=sel_gk,defe=sel_def,mid_1=sel_mid_1,mid_2=sel_mid_2,atk=sel_atk)
 
 
 @app.route("/hof-team", methods=["GET", "POST"])
