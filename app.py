@@ -64,7 +64,6 @@ def build_team():
     midfielders = db.session.execute(db.select(Player).where(Player.position.in_(["CM","CAM"]))).scalars().all()
     attackers = db.session.execute(db.select(Player).where(Player.position.in_(["ST","LW","RW"]))).scalars().all()
     if request.method=="POST":
-        print(request.form)
 
         gk_id = request.form.get('goalkeeper')
         def_id = request.form.get('defender')
@@ -163,6 +162,10 @@ def login():
             return redirect(url_for('home'))
         
     return render_template('login.html',form = form)
+
+@app.route('/learn-more')
+def learn_more():
+    return render_template('learn_more.html')
 
 
 @app.route("/logout")
