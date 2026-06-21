@@ -1,11 +1,62 @@
-player_data =[
-    {"id": 1, "name": "Lionel Messi", "rating": 93, "nation": "Argentina","position":"RW","img":"https://media.gettyimages.com/id/2281294609/photo/kansas-city-kansas-lionel-messi-of-argentina-poses-for-a-portrait-during-the-official-fifa.jpg?s=612x612&w=0&k=20&c=vagJMEeOcvO70DYjIypnXVanoHXUNw2ucVPEhgl4GlA=","msg":"A magician with the ball who can change a game in a single moment.","about": "Lionel Messi is widely regarded as one of the greatest footballers of all time. Known for his incredible dribbling, vision, passing, and finishing, he has won numerous league titles and international trophies. His ability to control matches and create magical moments has made him a football icon."},
-    {"id": 2, "name": "Cristiano Ronaldo", "rating": 90, "nation": "Portugal","position":"Lw","img":"https://media.gettyimages.com/id/962792890/photo/kiev-ukraine-cristiano-ronaldo-of-real-madrid-lifts-the-uefa-champions-league-trophy-following.jpg?s=612x612&w=0&k=20&c=F51xOktZy_gdCC-UpEo3cq4ZsaAnAi9e2XKRap_bCss=","msg":"The definition of dedication, leadership, and goalscoring greatness.","about": "Cristiano Ronaldo is one of football's most successful and decorated players. Famous for his goalscoring ability, athleticism, leadership, and work ethic, he has dominated the sport across multiple leagues. His relentless drive for success has inspired millions around the world."},
-    {"id": 3, "name": "Kylian Mbappe", "rating": 92, "nation": "France","position":"Lw","img":"https://media.gettyimages.com/id/2162376750/photo/madrid-spain-real-madrid-new-signing-kylian-mbappe-is-unveiled-at-estadio-santiago-bernabeu.jpg?s=612x612&w=0&k=20&c=7TSzU_H2lvc4gJG_bgerUOc_TjoaSOmAqr55VOmAodA=","msg":"Lightning-fast and fearless, always ready to make the difference.","about": "Kylian Mbappe is one of the brightest stars of modern football. Combining explosive pace, technical skill, and clinical finishing, he has become one of the most feared attackers in the world. Despite his young age, he has already achieved remarkable success for club and country."},
-    {"id": 4, "name": "Erling Haaland", "rating": 91, "nation": "Norway","position":"ST","img":"https://media.gettyimages.com/id/2278255681/photo/manchester-england-erling-haaland-of-manchester-city-puts-the-crown-from-the-2022-2023.jpg?s=612x612&w=0&k=20&c=WSYY-a0p85i7lWaUm6yYcuR3E64Ltvzproy8dqBlczU=","msg":"A goal machine who turns every chance into a nightmare for defenders.","about": "Erling Haaland is known for his incredible goalscoring instincts, physical strength, and speed. The Norwegian striker consistently breaks records and has established himself as one of the most dangerous forwards in world football."},
-    {"id": 5, "name": "Jude Bellingham", "rating": 89, "nation": "England","position":"CAM","img":"https://media.gettyimages.com/id/2157244620/photo/blankenhain-germany-jude-bellingham-of-england-poses-for-a-portrait-during-the-england.jpg?s=612x612&w=0&k=20&c=TGY2ihXbAwfw-6_WoO-ZqaW7lsoRNm_gjsaUd9pMF84=","msg":"A complete midfielder with the maturity of a veteran and the hunger of a youngster.","about": "Erling Haaland is known for his incredible goalscoring instincts, physical strength, and speed. The Norwegian striker consistently breaks records and has established himself as one of the most dangerous forwards in world football."},
-    {"id": 6, "name": "Neymar Junior", "rating": 90, "nation": "Brazil","position":"LW","img":"https://media.gettyimages.com/id/824360616/photo/miami-gardens-fl-neymar-of-barcelona-reacts-in-the-second-half-against-real-madrid-during.jpg?s=612x612&w=0&k=20&c=NthGPILj98rZWxdsjUw-wCrSgwpKtADVnLNAYEvEsDw=","msg":"Pure Brazilian flair, creativity, and entertainment every time he plays.","about": "Neymar Jr is one of the most skillful and entertaining players of his generation. Known for his creativity, dribbling, and flair, he has delighted fans throughout his career while achieving success at both club and international level."},
-    {"id": 7, "name": "Pedri", "rating": 89, "nation": "Spain","position":"CM","img":"https://media.gettyimages.com/id/2280600920/photo/puebla-mexico-pedri-of-spain-celebrates-after-scoring-the-teams-second-goal-during-the.jpg?s=612x612&w=0&k=20&c=1tn80T6--peHL4XYKVlpVJrxg3hcf4jy-V3821ExZqI=","msg":"A midfield artist who makes football look effortless.","about": "Pedri is a midfield maestro whose vision, passing, and football intelligence allow him to control the rhythm of a match. Despite his young age, he has become a key player for both club and country."},
-    {"id": 8, "name": "Virgil van Dijk", "rating": 90, "nation": "Netherlands","position":"CB","img":"https://media.gettyimages.com/id/2169758515/photo/manchester-england-virgil-van-dijk-of-liverpool-celebrates-following-the-teams-victory-in-the.jpg?s=612x612&w=0&k=20&c=l4t7nOtTVu2xCwRKmrW8ssgge85ae2Eg-e8PD1GDOL8=","msg":"A defensive giant whose presence brings confidence to the entire team.","about": "Virgil van Dijk is widely regarded as one of the best defenders of his generation. His strength, leadership, aerial dominance, and composure make him the foundation of any defense he leads."}
+import random
 
+clubs = [
+    "FC Thunder",
+    "Iron United",
+    "Blue Eagles",
+    "Golden Lions",
+    "Phoenix FC",
+    "Titan City",
+    "Storm Athletic",
+    "Royal Wanderers"
 ]
+positions = [
+    "GK",
+    "CB",
+    "LB",
+    "RB",
+    "CDM",
+    "CM",
+    "CAM",
+    "LW",
+    "RW",
+    "ST"
+]
+nations = [
+    "Brazil",
+    "Argentina",
+    "England",
+    "France",
+    "Germany",
+    "Spain",
+    "Portugal",
+    "Italy",
+    "Netherlands",
+    "Belgium",
+    "Croatia",
+    "Uruguay",
+    "Mexico",
+    "Japan",
+    "South Korea",
+    "United States"
+]
+last_names = [
+    "Silva", "Martinez", "Garcia", "Fernandez", "Lopez",
+    "Smith", "Johnson", "Brown", "Williams", "Taylor",
+    "Anderson", "Walker", "Hughes", "Morgan", "Clark",
+    "Costa", "Santos", "Pereira", "Alvarez", "Torres"
+]
+first_names = [
+    "Liam", "Noah", "Ethan", "Lucas", "Mateo",
+    "Oliver", "Benjamin", "Mason", "Leo", "Daniel",
+    "Alex", "Ryan", "Jack", "Nathan", "Samuel",
+    "Julian", "Marco", "Adrian", "David", "Gabriel"
+]
+
+for player in range(6):
+    name = f'{random.choice(first_names)} {random.choice(last_names)}'
+    age = random.randint(18,38)
+    nation = random.choice(nations)
+    position = random.choice(positions)
+    club = random.choice(clubs)
+    rating = random.randint(75,95)
