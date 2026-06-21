@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request
 from flask_bootstrap import Bootstrap5
 from dotenv import load_dotenv
 import os
@@ -6,6 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String
 from data import seed_player
+import random
 
 
 load_dotenv()
@@ -52,7 +53,36 @@ def player():
 
 @app.route("/build-team",methods=["GET","POST"])
 def build_team():
-    pass
+    
+    goalkeepers = db.session.execute(db.select(Player).where(Player.position=="GK")).scalars().all()
+    defenders = db.session.execute(db.select(Player).where(Player.position.in_(["CB","RB","LB"]))).scalars().all()
+    midfielders = db.session.execute(db.select(Player).where(Player.position.in_(["CM","CAM","CDM"]))).scalars().all()
+    attackers = db.session.execute(db.select(Player).where(Player.position.in_(["ST","LW","RW"]))).scalars().all()
+    
+    
+    goalkeepers = random.sample(goalkeepers, 3)
+        
+    defenders = random.sample(defenders, 3)
+    
+    midfielder_1 = random.sample(midfielders, 3)
+    
+    midfielder_2 = random.sample(midfielders, 3)
+    
+    attackers = random.sample(attackers, 3)
+    
+    
+    if request.method == 'POST':
+        pass
+        
+    
+    return render_template(
+    "build_team.html",
+    goalkeepers=goalkeepers,
+    defenders=defenders,
+    midfielder1=midfielder_1,
+    midfielder2=midfielder_2,
+    attackers=attackers
+)
 
 @app.route("/hof-team",methods=['GET','POST'])
 def hall_of_fame():

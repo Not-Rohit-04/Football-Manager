@@ -52,7 +52,30 @@
   <div class="container d-flex justify-content-center">
     <div style="width: 600px">
       <div class="list-group list-group-radio d-grid gap-2 border-0">
-        {% for midfielder in midfielders %}
+        {% for midfielder in midfielder1 %}
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="midfielder"
+            id="cm{{ midfielder.id }}"
+            value="{{ midfielder.id }}"
+          />
+
+          <label class="form-check-label" for="cm{{ midfielder.id }}">
+            {{ midfielder.name }} ({{ midfielder.rating }})
+          </label>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <h2 class="text-center mb-4">Midfielders</h2>
+  <div class="container d-flex justify-content-center">
+    <div style="width: 600px">
+      <div class="list-group list-group-radio d-grid gap-2 border-0">
+        {% for midfielder in midfielder2 %}
         <div class="form-check">
           <input
             class="form-check-input"
@@ -93,6 +116,8 @@
       </div>
     </div>
   </div>
-  <button type="submit">Generate Team</button>
+  <div class="text-center mt-4">
+    <button type="submit" class="btn btn-primary">Build Team</button>
+  </div>
 </form>
 {% endblock %}
